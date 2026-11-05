@@ -1,0 +1,50 @@
+{
+ "scenes": [["sky",0],["dom",1],["detskaya",3],["foto",7],["dver",9],["telefon",10],["obratno",11],["goodnight",12]],
+ "keys": {
+  "glow": [0, 0.2, "start"],
+  "beam": [1, 0.2, "start"],
+  "found": [1, 0, "end"],
+  "up": [2, 0, "start"],
+  "dark": [2, 0, "end"],
+  "sweep": [3, -0.4, "start"],
+  "chair": [3, 0, "mid"],
+  "hide": [4, -0.6, "start"],
+  "face": [4, 0, "start"],
+  "mouth": [4, 0, "end"],
+  "scream": [5, 0, "start"],
+  "dolgo": [5, -1.6, "end"],
+  "wait": [6, 0, "start"],
+  "back": [7, 0, "start"],
+  "photo": [7, 0.4, "start"],
+  "toy": [8, 0, "start"],
+  "cord": [9, 0, "start"],
+  "feet": [9, 0, "mid"],
+  "near": [10, -1.4, "end"],
+  "put": [11, 0, "start"],
+  "tel": [11, 0, "mid"],
+  "dim": [12, 0, "start"],
+  "sleep": [12, 0.4, "start"],
+  "end": [12, 0, "end"]
+ },
+ "pauses": [0.6, 0.8, 1.1, 1.2, 1.3, 1.6, 1.3, 0.6, 0.7, 0.9, 1.2, 1.4],
+ "stretch": {"5": [0.5, 0.4], "11": [0.5]},
+ "zvuk": {
+  "sky": ["noch", "veter"],
+  "dom": ["veter", "gul"],
+  "detskaya": ["gul", "skvoznyak"],
+  "foto": ["kapli", "noch"],
+  "dver": ["gul"],
+  "telefon": ["gul"],
+  "obratno": ["skvoznyak"],
+  "goodnight": ["noch"]
+ },
+ "sfx": [
+  {"tip": "skrip", "scene": "dom", "at": "up", "gain": 0.6},
+  {"tip": "serdce", "scene": "detskaya", "at": "face", "bpm": [46, 50], "switch": "scream", "ramp": 3, "until": "wait", "gain": 0.4},
+  {"tip": "shepot", "scene": "detskaya", "at": "dolgo", "gain": 0.3},
+  {"tip": "shepot", "scene": "dver", "at": "feet", "gain": 0.35},
+  {"tip": "shepot", "scene": "telefon", "at": "near", "shift": -0.3, "gain": 0.3},
+  {"tip": "pomehi", "scene": "goodnight", "at": "end", "gain": 0.4}
+ ],
+ "muzyka": "zhut"
+}

@@ -1,0 +1,5 @@
+{"num":"3 · 16+","title":["Сколько людей нужно,","чтобы кукла","моргнула?"],"titleSize":70,
+ "scene":"../../s03-chaki/animatsiya/scene.html",
+ "cfg":{"k":{"eyes":-10,"fingers":-10,"blink":99}},
+ "art":{"name":"face","t":25,"lt":3,"zoom":1.0,"x":0,"y":575},
+ "bottom":"её положили лёжа","sub":"страшные истории на ночь"}
