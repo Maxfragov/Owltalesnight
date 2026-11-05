@@ -1,0 +1,46 @@
+{
+ "scenes": [["sky",0],["pero",1],["vulkan",2],["villa",4],["noch",6],["son",8],["okno",11],["goodnight",12]],
+ "keys": {
+  "pishet": [1,0.2,"start"],
+  "izverg": [2,0.4,"start"],
+  "dymka": [3,0,"start"],
+  "bezleta": [3,0,"mid"],
+  "vnutri": [4,-0.2,"mid"],
+  "skvoz": [4,-0.4,"end"],
+  "bayron": [5,0,"start"],
+  "strashnoe": [5,-0.3,"end"],
+  "gasnet": [6,-0.5,"mid"],
+  "vidit": [6,-1.3,"end"],
+  "rodilsya": [7,0,"start"],
+  "dnevnik": [8,0,"start"],
+  "ogon": [9,0,"start"],
+  "pusto": [10,0,"start"],
+  "dozhd": [11,0,"start"],
+  "prosto": [11,-0.2,"mid"],
+  "dim": [12,0,"start"],
+  "sleep": [12,0.5,"end"]
+ },
+ "pauses": [0.8,1.0,0.9,1.0,1.0,1.2,1.7,1.0,1.0,1.3,1.8,1.4],
+ "stretch": {"6":[0.5,0.7]},
+ "zvuk": {
+  "sky": ["noch","dozhd"],
+  "pero": ["dozhd"],
+  "vulkan": ["gul","veter"],
+  "villa": ["dozhd","kapli","skvoznyak"],
+  "noch": [],
+  "son": ["skvoznyak"],
+  "okno": ["dozhd","kapli"],
+  "goodnight": ["noch","kapli"]
+ },
+ "sfx": [
+  {"tip":"shurh","scene":"pero","at":"pishet","every":1.1,"until":5.0,"gain":0.35},
+  {"tip":"grom","scene":"vulkan","at":"izverg","gain":0.55},
+  {"tip":"serdce","scene":"noch","at":"vidit","bpm":[46,46],"switch":"rodilsya","until":"rodilsya","gain":0.45},
+  {"tip":"skrip","scene":"noch","at":"vidit","shift":2.2,"gain":0.45},
+  {"tip":"shurh","scene":"noch","at":"rodilsya","shift":0.6,"gain":0.35},
+  {"tip":"shurh","scene":"son","at":"dnevnik","gain":0.3},
+  {"tip":"shchelchki","scene":"son","at":"ogon","every":0.9,"until":"pusto","gain":0.35},
+  {"tip":"shkatulka","scene":"son","at":"pusto","shift":1.2,"gain":0.5}
+ ],
+ "muzyka": "zhut"
+}

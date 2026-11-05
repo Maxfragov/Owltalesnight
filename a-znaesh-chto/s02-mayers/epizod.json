@@ -1,0 +1,262 @@
+{
+ "scenes": [
+  [
+   "sky",
+   0
+  ],
+  [
+   "mask",
+   1
+  ],
+  [
+   "door",
+   3
+  ],
+  [
+   "window",
+   4
+  ],
+  [
+   "gone",
+   5
+  ],
+  [
+   "house",
+   6
+  ],
+  [
+   "work",
+   7
+  ],
+  [
+   "titles",
+   9
+  ],
+  [
+   "window2",
+   11
+  ],
+  [
+   "goodnight",
+   12
+  ]
+ ],
+ "keys": {
+  "glow": [
+   0,
+   0.2,
+   "start"
+  ],
+  "price": [
+   1,
+   0.4,
+   "start"
+  ],
+  "face": [
+   2,
+   0,
+   "start"
+  ],
+  "smooth": [
+   2,
+   0,
+   "mid"
+  ],
+  "door": [
+   3,
+   -0.4,
+   "start"
+  ],
+  "tilt": [
+   3,
+   0,
+   "mid"
+  ],
+  "hide": [
+   4,
+   -0.6,
+   "start"
+  ],
+  "stand": [
+   4,
+   0.6,
+   "start"
+  ],
+  "blink": [
+   5,
+   0.15,
+   "start"
+  ],
+  "hush": [
+   6,
+   0,
+   "start"
+  ],
+  "back": [
+   7,
+   0,
+   "start"
+  ],
+  "shop": [
+   7,
+   0.2,
+   "start"
+  ],
+  "paint": [
+   8,
+   0.6,
+   "start"
+  ],
+  "eyes": [
+   8,
+   -1.6,
+   "end"
+  ],
+  "credits": [
+   9,
+   0,
+   "start"
+  ],
+  "shape": [
+   9,
+   -1.0,
+   "end"
+  ],
+  "nick": [
+   10,
+   0,
+   "start"
+  ],
+  "other": [
+   10,
+   0,
+   "mid"
+  ],
+  "look": [
+   11,
+   0,
+   "start"
+  ],
+  "flick": [
+   11,
+   0,
+   "mid"
+  ],
+  "dim": [
+   12,
+   0,
+   "start"
+  ],
+  "sleep": [
+   12,
+   0.4,
+   "start"
+  ],
+  "end": [
+   12,
+   0,
+   "end"
+  ]
+ },
+ "pauses": [
+  0.7,
+  1.0,
+  1.1,
+  1.3,
+  1.2,
+  1.7,
+  1.4,
+  0.7,
+  0.8,
+  1.0,
+  1.2,
+  1.4
+ ],
+ "stretch": {
+  "5": [
+   0.5
+  ],
+  "6": [
+   0.5
+  ],
+  "11": [
+   0.4
+  ]
+ },
+ "zvuk": {
+  "sky": [
+   "noch",
+   "veter"
+  ],
+  "mask": [
+   "noch",
+   "gul"
+  ],
+  "door": [
+   "gul",
+   "skvoznyak"
+  ],
+  "window": [
+   "gul",
+   "veter"
+  ],
+  "gone": [],
+  "house": [
+   "chasy"
+  ],
+  "work": [
+   "chasy",
+   "noch"
+  ],
+  "titles": [
+   "chasy"
+  ],
+  "window2": [
+   "skvoznyak"
+  ],
+  "goodnight": [
+   "noch"
+  ]
+ },
+ "sfx": [
+  {
+   "tip": "skrip",
+   "scene": "door",
+   "at": "door",
+   "gain": 0.6
+  },
+  {
+   "tip": "serdce",
+   "scene": "window",
+   "at": "stand",
+   "bpm": [
+    48,
+    52
+   ],
+   "switch": "stand",
+   "ramp": 3,
+   "gain": 0.45
+  },
+  {
+   "tip": "shurh",
+   "scene": "work",
+   "at": "paint",
+   "gain": 0.5
+  },
+  {
+   "tip": "plenka",
+   "scene": "titles",
+   "at": "credits",
+   "every": 3.2,
+   "until": "other",
+   "gain": 0.45
+  },
+  {
+   "tip": "pomehi",
+   "scene": "titles",
+   "at": "other",
+   "gain": 0.35
+  }
+ ],
+ "muzyka": "zhut"
+}
