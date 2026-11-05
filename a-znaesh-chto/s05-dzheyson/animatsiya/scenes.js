@@ -72,8 +72,11 @@ function maskG(c,x,y,s,o={}){const col=o.col||[214,212,198],a=o.a==null?1:o.a,ho
     c.strokeStyle='rgba(70,80,84,0.6)';c.lineWidth=4;c.beginPath();c.moveTo(-40,-150);c.lineTo(-10,-120);c.moveTo(60,-140);c.lineTo(40,-112);c.stroke();c.globalAlpha/=o.marks;}
   c.restore();
   // дырочки: своё неровное расположение (не рисунок из фильма)
-  const H_=[[-30,40,7],[28,46,7],[-6,74,6],[24,92,6],[-28,100,5],[2,118,6],[-58,70,5],[60,64,5],[-14,-118,5],[18,-104,5],[-70,4,5],[76,12,5]];
-  for(const [hx,hy,hr] of H_){c.fillStyle=`rgba(4,8,10,${0.85*ho})`;ell(c,hx+tu*6,hy,hr,hr*1.1);c.fill();c.fillStyle=`rgba(255,255,255,${0.10*ho})`;ell(c,hx+tu*6+1,hy+hr*0.9,hr*0.8,1.6);c.fill();}
+  // своё расположение: по две вертикальные прорези на щеках и короткий ряд дырочек у подбородка (не рисунок из фильма)
+  c.lineCap='round';
+  for(const [hx,hy,hl] of [[-64,30,40],[-40,52,46],[40,52,46],[64,30,40]]){c.strokeStyle=`rgba(4,8,10,${0.85*ho})`;c.lineWidth=9;c.beginPath();c.moveTo(hx+tu*6,hy);c.lineTo(hx+tu*6,hy+hl);c.stroke();
+    c.strokeStyle=`rgba(255,255,255,${0.10*ho})`;c.lineWidth=2;c.beginPath();c.moveTo(hx+tu*6+5,hy+2);c.lineTo(hx+tu*6+5,hy+hl);c.stroke();}
+  for(const hx of [-21,-7,7,21]){c.fillStyle=`rgba(4,8,10,${0.85*ho})`;ell(c,hx+tu*6,128,5,5);c.fill();}
   // глазницы
   for(const ex of [-46,46]){const exx=ex+tu*10;const gg=c.createRadialGradient(exx,-26,2,exx,-26,34);gg.addColorStop(0,'#020506');gg.addColorStop(0.7,'#061014');gg.addColorStop(1,'rgba(6,16,20,0)');
     c.fillStyle=gg;c.beginPath();c.ellipse(exx,-26,34,20,ex<0?0.12:-0.12,0,Math.PI*2);c.fill();
@@ -104,7 +107,7 @@ const SC={
     const ent=ease(lt/1.6);moon(c,540,700,t);owl(c,540,760+(1-ent)*500,1.15*(0.6+0.4*ent),t,blink(t,0),false,{talk:talk(t)});c.restore();
     fog(c,t,1000,1160,0.14);
     treeline(c,1120,120,230,'#050b0e',0.05);
-    cabin(c,770,1180,0.42,{col:'#060c0f',win:ease((lt-K('glow'))/1.5)});
+    cabin(c,780,1150,0.5,{col:'#060c0f',edge:0.6,win:ease((lt-K('glow'))/1.5)});
     fog(c,t,1120,1260,0.12);vignD(c,0.7);
   },
   film(c,t,lt){
@@ -201,9 +204,7 @@ const SC={
     fog(c,t,350,900,0.2);
     for(const [x,w] of [[150,40],[930,46]])trunk(c,x,w,'#1c343b');
     const ho=lerp(0.55,1,ease((lt-K('holes'))/1.6)),tu=lerp(0.6,0,ease((lt-K('look'))/2.2));
-    bigFig(c,560,1700,1.0,{face:1,rim:1,col:'#070e11',mcol:[206,204,190],holes:ho,turn:tu,tilt:-0.03*tu});
-    // глаза в тени: едва заметная влажная искра, когда «смотрят сюда»
-    const lk=ease((lt-K('look'))/2.2);if(lk>0){for(const ex of [-23,23])glow(c,560+ex,900-64*0.5*0+(-800-64)+1700-26*0.5+ (0),6,'200,215,215',0.0);}
+    bigFig(c,560,1700,1.0,{face:1,rim:1,col:'#04090b',mcol:[206,204,190],holes:ho,turn:tu,tilt:-0.03*tu});
     fog(c,t,1000,1250,0.14);
     trunk(c,40,200,'#050b0e',0.7,1);trunk(c,1060,220,'#050b0e',0.7,-1);
     vignD(c,0.85);
@@ -321,7 +322,7 @@ const SC={
     treeline(c,1120,120,230,'#050b0e',0.05);
     // фонарь на крыльце тихо гаснет после хруста ветки
     const out=ease((lt-K('out'))/1.6);
-    cabin(c,770,1180,0.42,{col:'#060c0f',win:(0.85-0.3*dim)*(1-out)});
+    cabin(c,780,1150,0.5,{col:'#060c0f',edge:0.6,win:(0.85-0.3*dim)*(1-out)});
     fog(c,t,1120,1260,0.12);
     c.fillStyle=`rgba(0,6,10,${0.15*dim})`;c.fillRect(0,0,W,H);vignD(c,0.75);
   }
