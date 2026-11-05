@@ -1,0 +1,318 @@
+{
+ "scenes": [
+  [
+   "sky",
+   0
+  ],
+  [
+   "sledy",
+   1
+  ],
+  [
+   "telefon",
+   2
+  ],
+  [
+   "dvor",
+   4
+  ],
+  [
+   "aktrisa",
+   7
+  ],
+  [
+   "okiku",
+   9
+  ],
+  [
+   "nazad",
+   11
+  ],
+  [
+   "goodnight",
+   12
+  ]
+ ],
+ "keys": {
+  "glow": [
+   0,
+   0.2,
+   "start"
+  ],
+  "sled": [
+   1,
+   0,
+   "start"
+  ],
+  "zhivyh": [
+   1,
+   -0.9,
+   "end"
+  ],
+  "dzyn1": [
+   2,
+   0,
+   "start"
+  ],
+  "dzyn2": [
+   2,
+   0.62,
+   "start"
+  ],
+  "komnata": [
+   2,
+   0,
+   "mid"
+  ],
+  "nikto": [
+   3,
+   0,
+   "start"
+  ],
+  "obryv": [
+   3,
+   -0.3,
+   "end"
+  ],
+  "dvor": [
+   4,
+   0,
+   "start"
+  ],
+  "tuman": [
+   4,
+   0,
+   "mid"
+  ],
+  "hide": [
+   5,
+   -0.5,
+   "start"
+  ],
+  "r1": [
+   5,
+   0.35,
+   "start"
+  ],
+  "r2": [
+   5,
+   -0.1,
+   "mid"
+  ],
+  "r3": [
+   5,
+   -0.6,
+   "end"
+  ],
+  "r4": [
+   5,
+   0.15,
+   "end"
+  ],
+  "r5": [
+   5,
+   0.9,
+   "end"
+  ],
+  "shag": [
+   6,
+   0.2,
+   "start"
+  ],
+  "plecho": [
+   6,
+   0.1,
+   "mid"
+  ],
+  "syuda": [
+   6,
+   -0.75,
+   "end"
+  ],
+  "back": [
+   7,
+   0,
+   "start"
+  ],
+  "zadom": [
+   7,
+   -1.4,
+   "end"
+  ],
+  "plenka": [
+   8,
+   0,
+   "start"
+  ],
+  "nepr": [
+   8,
+   0,
+   "mid"
+  ],
+  "zamok": [
+   9,
+   0,
+   "start"
+  ],
+  "kolodec2": [
+   10,
+   0,
+   "start"
+  ],
+  "schet": [
+   10,
+   -0.2,
+   "mid"
+  ],
+  "rewind": [
+   11,
+   0,
+   "start"
+  ],
+  "popyat": [
+   11,
+   0.9,
+   "start"
+  ],
+  "snova": [
+   11,
+   -1.0,
+   "end"
+  ],
+  "dim": [
+   12,
+   0,
+   "start"
+  ],
+  "sleep": [
+   12,
+   0.4,
+   "start"
+  ],
+  "end": [
+   12,
+   0,
+   "end"
+  ]
+ },
+ "pauses": [
+  0.6,
+  0.8,
+  1.0,
+  1.4,
+  1.1,
+  1.4,
+  1.6,
+  0.5,
+  0.7,
+  0.6,
+  1.5,
+  1.2
+ ],
+ "stretch": {
+  "2": [
+   0.35
+  ],
+  "6": [
+   0.4,
+   0.5
+  ]
+ },
+ "zvuk": {
+  "sky": [
+   "noch"
+  ],
+  "sledy": [
+   "noch",
+   "kapli"
+  ],
+  "telefon": [],
+  "dvor": [
+   "skvoznyak",
+   "noch"
+  ],
+  "aktrisa": [
+   "gul"
+  ],
+  "okiku": [
+   "veter",
+   "kapli"
+  ],
+  "nazad": [
+   "gul"
+  ],
+  "goodnight": [
+   "noch"
+  ]
+ },
+ "sfx": [
+  {
+   "tip": "pomehi",
+   "scene": "sky",
+   "at": 0.0,
+   "gain": 0.35
+  },
+  {
+   "tip": "pomehi",
+   "scene": "telefon",
+   "at": "dzyn1",
+   "shift": -0.2,
+   "gain": 0.4
+  },
+  {
+   "tip": "pomehi",
+   "scene": "telefon",
+   "at": "dzyn2",
+   "gain": 0.32
+  },
+  {
+   "tip": "shchelchki",
+   "scene": "dvor",
+   "times": [
+    "r1",
+    "r2",
+    "r3",
+    "r4",
+    "r5",
+    "shag",
+    "plecho",
+    "syuda"
+   ],
+   "gain": 0.5
+  },
+  {
+   "tip": "shchelchki",
+   "scene": "aktrisa",
+   "times": [
+    "zadom"
+   ],
+   "every": 0.5,
+   "until": "plenka",
+   "gain": 0.4
+  },
+  {
+   "tip": "plenka",
+   "scene": "aktrisa",
+   "at": "plenka",
+   "every": 3.0,
+   "gain": 0.3
+  },
+  {
+   "tip": "shchelchki",
+   "scene": "nazad",
+   "times": [
+    "popyat"
+   ],
+   "every": 0.9,
+   "until": "snova",
+   "gain": 0.35
+  },
+  {
+   "tip": "pomehi",
+   "scene": "nazad",
+   "at": "rewind",
+   "gain": 0.3
+  }
+ ],
+ "muzyka": "zhut"
+}
