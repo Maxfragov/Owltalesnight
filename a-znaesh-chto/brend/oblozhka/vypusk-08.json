@@ -1,0 +1,6 @@
+{"num":8,"title":["Прямо сейчас","ты летишь","быстрее пули"],"titleSize":84,
+ "sub":"факты, в которые трудно поверить",
+ "scene":"../../08-ty-letish/animatsiya/scene.html",
+ "cfg":{"k":{"bullet":99,"loop":99},"noCounter":true},
+ "art":{"name":"tea","t":19,"lt":1.5,"zoom":1.0,"x":0,"y":40},
+ "bottom":"сколько ты пролетел за это видео?"}

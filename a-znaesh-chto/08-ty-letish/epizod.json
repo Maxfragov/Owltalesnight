@@ -1,0 +1,26 @@
+{
+ "scenes": [["sofa",0],["orbit",3],["galaxy",4],["tea",5],["map",6],["share",8]],
+ "keys": {
+  "bullet": [1,0,"start"],
+  "loop": [2,0,"start"],
+  "fast": [4,0,"mid"],
+  "stop": [6,0,"start"],
+  "vlad": [7,0,"start"],
+  "send": [8,0,"start"]
+ },
+ "pauses": [0.15,0.3,0.35,0.3,0.3,0.4,0.35,0.4,0.4],
+ "stretch": {},
+ "lead": 0.3,
+ "tail": 2.6,
+ "maxDur": 34,
+ "fadeIn": 0,
+ "mergeGap": 0.1,
+ "muzyka": "zhivo",
+ "zvuk": {"sofa":["noch"],"orbit":["gul"],"galaxy":["gul","veter"],"tea":["noch"],"map":["noch"],"share":["noch"]},
+ "sfx": [
+  {"tip":"vzhuh","scene":"sofa","at":"bullet","gain":0.9},
+  {"tip":"vzhuh","scene":"galaxy","at":"fast","shift":-0.4,"gain":1},
+  {"tip":"zvon","scene":"map","at":"stop","gain":0.7},
+  {"tip":"zvon","scene":"share","at":"send","gain":0.5}
+ ]
+}
