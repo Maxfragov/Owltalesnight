@@ -7,7 +7,7 @@ import numpy as np,wave,re,json,sys,subprocess,os
 EP=os.path.abspath(sys.argv[1]);E=json.load(open(os.path.join(EP,'epizod.json')))
 out=sys.argv[2];os.makedirs(out,exist_ok=True)
 lines=[l.split('. ',1)[1] for l in open(os.path.join(EP,'scenariy.md')).read().splitlines() if re.match(r'^\d+\. ',l)]
-SR=24000;LEAD=1.2;TAIL=4.5
+SR=24000;LEAD=E.get('lead',1.2);TAIL=E.get('tail',4.5);MAXD=E.get('maxDur',61)  # короткие выпуски: lead/tail/maxDur в epizod.json
 # сцены: [имя, индекс первой строки]
 SCN=[tuple(x) for x in E['scenes']]
 def stretch(seg,gaps):
@@ -58,9 +58,9 @@ if len(sys.argv)>3:
     b=[];m=M
     for li in range(N,0,-1):k=P[li,m];b.append((S[k][0],S[m-1][1]));m=k
     b=b[::-1]
-    # ElevenLabs v3/v4 может игнорировать <break>: ставим паузы между строками сами, ужимая под ~61 с
+    # ElevenLabs v3/v4 может игнорировать <break>: ставим паузы между строками сами, ужимая под maxDur (~61 с)
     PZ=E['pauses']
-    speech=sum(e_-s_+0.25 for s_,e_ in b);sc=float(np.clip((61-LEAD-TAIL-speech)/sum(PZ),0.45,1.0))
+    speech=sum(e_-s_+0.25 for s_,e_ in b);sc=float(np.clip((MAXD-LEAD-TAIL-speech)/sum(PZ),0.45,1.0))
     parts=[np.zeros(int(LEAD*SR))];T=LEAD;cues=[]
     for i,((s_,e_),l) in enumerate(zip(b,lines)):
         a_=int(max(0,s_-0.08)*SR);z_=int(min(len(x)/SR,e_+0.17)*SR);seg=x[a_:z_].copy()

@@ -1,5 +1,5 @@
 # Колыбельная серии: python3 music.py DUR out.wav [rezhim]
-# Режимы: kolybelnaya (по умолчанию, как в 01–05) | zhut — «немного страшная» тема:
+# Режимы: kolybelnaya (по умолчанию, как в 01–05) | zhivo (с 07: бодро, с первой секунды) | zhut — «немного страшная» тема:
 #   ре минор, медленно (аккорд 7.2 с), челеста/шкатулка с редкими диссонансами (b2, тритон),
 #   низкий гул-дрон D1/D2, длинная тёмная реверберация, без резких атак; пик 0.7, те же фейды.
 # Режим: 3-й аргумент или переменная окружения MUZYKA; chernovik.sh/make.sh берут его
@@ -70,6 +70,42 @@ if MODE=='zhut':
     with wave.open(out,'wb') as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st*32767).astype('<i2').tobytes())
     print('ok',out,'zhut'); sys.exit(0)
+if MODE=='zhivo':
+    # ---------- «живая» тема для коротких выпусков с хуком (с 07): соль мажор, ~100 уд/мин, маримба + пицикато-бас + шейкер ----------
+    # звучит с первой секунды (фейд 0.3 с), без долгого вступления; пик 0.7
+    rng=np.random.default_rng(21); BPM=100; B=60/BPM
+    def norm(x): return x/(np.max(np.abs(x))+1e-12)
+    chords=[[55,59,62,67],[52,55,59,64],[48,52,55,60],[50,54,57,62]]   # G Em C D
+    def mar(f,L,dec=0.35):
+        tt=np.arange(L)/SR; env=np.exp(-tt/dec)*np.minimum(1,tt/0.003)
+        return (np.sin(2*np.pi*f*tt)+0.35*np.sin(2*np.pi*4.0*f*tt)*np.exp(-tt/0.05)+0.15*np.sin(2*np.pi*10*f*tt)*np.exp(-tt/0.015))*env
+    mel=np.zeros(N); bass=np.zeros(N); sh=np.zeros(N); pad=np.zeros(N)
+    pat=[0,2,1,3,2,1,3,2]   # арпеджио восьмыми
+    i=0; tm=0.0
+    while tm<DUR:
+        bar=int(tm/(4*B)); ch=chords[bar%4]; step=i%8
+        a=int(tm*SR); L=min(N-a,int(1.2*SR))
+        if L>0:
+            m=ch[pat[step]]+12+(12 if (step==4 and bar%2) else 0)
+            mel[a:a+L]+=mar(hz(m),L)*(0.9 if step%2==0 else 0.6)*rng.uniform(0.85,1)
+            if step in (0,3,4,6):
+                Lb=min(N-a,int(0.6*SR)); tb=np.arange(Lb)/SR
+                bass[a:a+Lb]+=np.sin(2*np.pi*hz(ch[0]-12)*tb)*np.exp(-tb/0.22)*np.minimum(1,tb/0.004)*(1 if step==0 else 0.7)
+            Ls=min(N-a,int(0.08*SR)); sh[a:a+Ls]+=rng.standard_normal(Ls)*np.exp(-np.arange(Ls)/SR/0.02)*(0.6 if step%2 else 1)
+        if step==0 and L>0:
+            Lp=min(N-a,int(4*B*SR)+int(0.5*SR)); tp=np.arange(Lp)/SR; e=np.minimum(1,tp/0.4)*np.clip((4*B+0.5-tp)/0.5,0,1)
+            pad[a:a+Lp]+=sum(np.sin(2*np.pi*hz(m)*tp) for m in ch)*e
+        i+=1; tm+=B/2
+    pad=lowpass(pad,1200); sh=norm(lowpass(np.diff(np.r_[0,sh]),9000)); 
+    L=int(1.2*SR); ir=rng.standard_normal(L)*np.exp(-np.arange(L)/SR/0.35); ir=lowpass(ir,5000); ir/=np.sqrt((ir**2).sum())
+    melv=norm(mel); wet=norm(fft_conv(melv,ir))
+    musL=melv*0.5+wet*0.25+norm(bass)*0.35+norm(pad)*0.12+sh*0.05
+    musR=melv*0.45+norm(fft_conv(melv,np.roll(ir,211)))*0.25+norm(bass)*0.35+norm(pad)*0.12+np.roll(sh,300)*0.05
+    fade=np.minimum(1,t/0.3)*np.clip((DUR-t)/2.5,0,1)
+    st=np.stack([musL*fade,musR*fade],1); st=st/np.max(np.abs(st))*0.7
+    with wave.open(out,'wb') as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st*32767).astype('<i2').tobytes())
+    print('ok',out,'zhivo'); sys.exit(0)
 # chords (midi), 4.8 s each
 chords=[[53,57,60,64],[52,55,60,67],[50,57,60,65],[46,53,57,62]]
 CL=4.8
