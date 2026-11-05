@@ -1,0 +1,40 @@
+{
+ "scenes": [["hook",0],["name",2],["eat",3],["sleep",4],["legs",5],["years",6],["nest",7],["final",8]],
+ "keys": {
+  "hook1": [1,0,"start"],
+  "vobshe": [1,-0.5,"end"],
+  "drink": [3,0,"mid"],
+  "zz": [4,0,"start"],
+  "apus": [5,0,"mid"],
+  "years": [6,0,"start"],
+  "touch": [7,-0.3,"end"],
+  "q": [8,0,"start"]
+ },
+ "pauses": [0.15,0.35,0.3,0.35,0.35,0.4,0.35,0.45,0.4],
+ "stretch": {},
+ "lead": 0.3,
+ "tail": 2.6,
+ "maxDur": 34,
+ "fadeIn": 0.05,
+ "muzyka": "zhivo",
+ "zvuk": {
+  "hook": ["veter"],
+  "name": ["veter"],
+  "eat": ["veter"],
+  "sleep": ["veter","noch"],
+  "legs": ["noch"],
+  "years": ["veter"],
+  "nest": ["noch"],
+  "final": ["noch"]
+ },
+ "sfx": [
+  {"tip":"vzhuh","scene":"hook","at":0.0,"gain":1},
+  {"tip":"svist","scene":"hook","at":0.7,"gain":0.8},
+  {"tip":"svist","scene":"name","at":0.4,"gain":0.9},
+  {"tip":"vzhuh","scene":"eat","at":"drink","shift":-0.45,"gain":0.8},
+  {"tip":"fontan","scene":"eat","at":"drink","gain":0.45},
+  {"tip":"svist","scene":"years","at":"years","shift":0.3,"gain":0.7},
+  {"tip":"zvon","scene":"nest","at":"touch","gain":0.7},
+  {"tip":"zvon","scene":"final","at":"q","gain":0.4}
+ ]
+}

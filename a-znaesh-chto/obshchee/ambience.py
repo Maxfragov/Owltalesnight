@@ -151,8 +151,20 @@ def ev_plenka(g=1):
         a=int(rng.uniform(0.1,3.0)*SR);x[a:a+C]+=hp(rng.standard_normal(C),2500)*c
     x=lp(x,3500)+0.15*lp(rng.standard_normal(L),300)*np.sin(2*np.pi*48*tt)
     x*=env_ad(L,0.4,0.8);return x/(np.max(np.abs(x))+1e-9)*g*0.08
+# --- выпуск 7 (стриж): свист стрижей и «вжух» пролёта ---
+def ev_svist(g=1):
+    L=int(0.9*SR);x=np.zeros(L)
+    for i in range(int(rng.integers(2,4))):
+        M=int(rng.uniform(0.25,0.4)*SR);tt=np.arange(M)/SR;f0=rng.uniform(3600,4600)
+        f=f0*(1+0.06*np.sin(2*np.pi*rng.uniform(28,40)*tt))*(1-0.12*tt/tt[-1])
+        s=np.sin(2*np.pi*np.cumsum(f)/SR)*np.abs(np.sin(np.pi*tt/tt[-1]))**1.5*(0.7+0.3*rng.standard_normal(M).clip(-1,1)*0.3)
+        a=int(rng.uniform(0,0.45)*SR);x[a:a+M]+=s[:L-a]*rng.uniform(0.5,1)
+    return lp(x,7000)*g*0.05
+def ev_vzhuh(g=1):
+    L=int(0.8*SR);tt=np.arange(L)/SR;e=np.exp(-((tt-0.38)/0.15)**2)
+    x=hp(lp(rng.standard_normal(L),2500),300)*e;return x/(np.max(np.abs(x))+1e-9)*g*0.12
 EV={'serdce':ev_serdce,'shchelchki':ev_shchelchok,'fontan':ev_fontan,'zvon':ev_zvon,'shurh':ev_shurh,'puzyrki':ev_puzyrki,
-    'skrip':ev_skrip,'stuk':ev_stuk,'shepot':ev_shepot,'grom':ev_grom,'shkatulka':ev_shkatulka,'pomehi':ev_pomehi,'plenka':ev_plenka}
+    'skrip':ev_skrip,'stuk':ev_stuk,'shepot':ev_shepot,'grom':ev_grom,'shkatulka':ev_shkatulka,'pomehi':ev_pomehi,'plenka':ev_plenka,'svist':ev_svist,'vzhuh':ev_vzhuh}
 # ---------- build ----------
 SH=0
 def tloc(scene,v):return (v if isinstance(v,(int,float)) else K.get(v,99))+SH
@@ -188,7 +200,7 @@ for s in E.get('sfx',[]):
             if 'every' not in s:break
             t+=s['every']
 mix=lp(mix,9000)
-fi=int(1.0*SR);mix[:fi]*=np.linspace(0,1,fi);mix[-int(2*SR):]*=np.linspace(1,0,int(2*SR))
+fi=max(1,int(E.get('fadeIn',1.0)*SR));mix[:fi]*=np.linspace(0,1,fi);mix[-int(2*SR):]*=np.linspace(1,0,int(2*SR))
 mix=mix/(np.max(np.abs(mix))+1e-9)*0.7
 st=np.stack([mix,np.roll(mix,int(0.011*SR))],1)
 with wave.open(OUT,'wb') as w:w.setnchannels(2);w.setsampwidth(2);w.setframerate(SR);w.writeframes((st*32767).astype('<i2').tobytes())

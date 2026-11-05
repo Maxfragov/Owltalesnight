@@ -136,7 +136,7 @@ function subtitles(c,t){
 }
 function endCard(c,t){const k=ease((t-(CFG.duration-3.2))/1.2);if(k<=0)return;
   c.save();c.globalAlpha=k;c.textAlign='center';c.font='700 64px C';c.fillStyle='#ffe9b0';c.shadowColor='rgba(255,210,120,0.8)';c.shadowBlur=30;
-  c.fillText('А знаешь что...',W/2,260);c.font='700 34px C';c.shadowBlur=10;c.fillStyle='#cfd6ff';c.fillText('истории перед сном',W/2,320);c.restore();}
+  c.fillText('А знаешь что...',W/2,260);c.font='700 34px C';c.shadowBlur=10;c.fillStyle='#cfd6ff';c.fillText(window.END_SUB||'истории перед сном',W/2,320);c.restore();}
 // ---------- main ----------
 function render(t){
   const active=CFG.scenes.filter(([n,a,b])=>t>=a&&t<b);
@@ -150,7 +150,7 @@ function render(t){
   {const sc=CFG.scenes;const a0=sc[1][1],b0=sc[sc.length-1][1];miniOwl(ctx,t,Math.min(ease((t-a0-0.5)/0.8),ease((b0+0.3-t)/0.6)));}
   subtitles(ctx,t);endCard(ctx,t);
   // fade in/out
-  const f=Math.min(ease(t/0.8),ease((CFG.duration-t)/1.0));if(f<1){ctx.fillStyle=`rgba(0,0,0,${1-f})`;ctx.fillRect(0,0,W,H);}
+  const fi=CFG.fadeIn!=null?CFG.fadeIn:0.8;const f=Math.min(fi>0?ease(t/fi):1,ease((CFG.duration-t)/1.0));if(f<1){ctx.fillStyle=`rgba(0,0,0,${1-f})`;ctx.fillRect(0,0,W,H);}
   ctx.save();ctx.globalAlpha=0.045;ctx.globalCompositeOperation='overlay';
   const ox=Math.floor(Math.random()*256),oy=Math.floor(Math.random()*256);
   ctx.fillStyle=ctx.createPattern(grain,'repeat');ctx.translate(-ox,-oy);ctx.fillRect(0,0,W+256,H+256);ctx.restore();
