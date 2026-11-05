@@ -37,7 +37,7 @@ if len(sys.argv)>3:
         if sp[i]:
             j=i
             while j<n and sp[j]:j+=1
-            if segs and (i-segs[-1][1])*h/SR<0.28:segs[-1][1]=j
+            if segs and (i-segs[-1][1])*h/SR<E.get('mergeGap',0.28):segs[-1][1]=j
             else:segs.append([i,j])
             i=j
         else:i+=1
@@ -80,6 +80,7 @@ else:
     for i,l in enumerate(lines):
         d=len(l.split())*0.38+0.4+sum(E.get('stretch',{}).get(str(i),[]));cues.append([round(T,2),round(T+d+0.3,2),l]);T+=d+(pz[i] if i<len(pz) else 0)
     T+=TAIL;amp=None
+for i in range(len(cues)-1):cues[i][1]=round(min(cues[i][1],cues[i+1][0]-0.45),2)  # быстрая речь: субтитры соседних строк не накладываются
 s=[c[0] for c in cues];e=[c[1] for c in cues]
 sc=[]
 for i,(nm,li) in enumerate(SCN):
