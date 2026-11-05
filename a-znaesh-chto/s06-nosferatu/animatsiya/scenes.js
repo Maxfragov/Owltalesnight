@@ -1,4 +1,5 @@
 // Страшная арка s06: граф Орлок, «Носферату» (1922). Подключается после obshchee/core.js.
+window.END_SUB='страшные истории';
 // Фильм 1922 года в общественном достоянии, облик делаем максимально похожим: лысый вытянутый череп, острые уши,
 // крючковатый нос, два передних зуба, глубокие глазницы, сгорбленная спина, длинные пальцы-когти, тень на лестнице.
 // Знаменитый кадр кадр-в-кадр не повторяем: лестница идёт справа налево, тень сначала «тонкая, как карандаш».
@@ -320,8 +321,8 @@ const SC={
       c.globalCompositeOperation='saturation';c.fillStyle='#808080';c.fillRect(240,180,600,840);c.globalCompositeOperation='multiply';c.fillStyle='rgb(214,214,196)';c.fillRect(240,180,600,840);
       c.restore();
       c.fillStyle='rgba(255,220,160,0.05)';c.fillRect(200,140,680,920);
-      // табличка
-      c.fillStyle='#4b3a22';c.fillRect(420,1072,240,46);c.fillStyle='#b99a62';c.font='700 26px C';c.textAlign='center';c.fillText('MAX SCHRECK',540,1104);
+      // табличка над рамой (снизу её закрывали субтитры)
+      c.fillStyle='#4b3a22';c.fillRect(420,92,240,46);c.fillStyle='#b99a62';c.font='700 26px C';c.textAlign='center';c.fillText('MAX SCHRECK',540,124);
       c.restore();
       candle(c,930,1180,0.9,t,{});
       vignD(c,0.72);}
